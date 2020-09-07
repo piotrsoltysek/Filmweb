@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmweb</title>
+</head>
+<body>
+
+<a href="/main" id="logo" th:fragment="logo">
+
+</a>
+
+
+
+<div id="user-menu" th:fragment="userMenu">
+    <a href="/basket" id="basket-button"></a>
+    <th:block th:if="${!isLogged}">
+        <a href="/login" id="login-button"></a>
+    </th:block>
+
+    <th:block th:if="${isLogged}">
+        <a href="/logout" id="logout-button"></a>
+    </th:block>
+
+    <th:block th:if="${isLogged}">
+        <a href="/addMovie" id="addMovie-button"></a>
+    </th:block>
+</div>
+
+
+
+
+<div id="finder" th:fragment="finderBar">
+    <form method="POST" action="/find">
+        <input type="text" placeholder="Szukaj" name="pattern">
+        <input type="submit" value="Szukaj">
+    </form>
+
+</div>
+
+
+
+
+
+<div id="menu" th:fragment="menu">
+    <a href="/cooking">Gotowanie</a>
+    <a href="/baking">Pieczenie</a>
+</div>
+
+
+
+</body>
+</html>

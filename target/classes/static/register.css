@@ -1,0 +1,23 @@
+#register-form {
+    margin: 0 auto;
+    width: 400px;
+    margin-top: 40px;
+    text-align: center;
+
+}
+
+#register-form input {
+    margin: 10px 0;
+    text-align: center;
+
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    padding: 15px;
+    background-color: #878db7;
+    border: 2px solid rgba(62, 71, 181, 0.77);
+    border-radius: 10px;
+}

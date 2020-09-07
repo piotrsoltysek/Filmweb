@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmweb</title>
+    <link rel="stylesheet" type="text/css" href="register.css">
+</head>
+<body>
+<div class="container">
+
+    <form id="register-form" method="POST" th:object="${user}">
+        <input type="text" placeholder="login" th:field="*{login}"><br>
+        <input type="password" placeholder="hasło" th:field="*{password}"><br>
+        <input type="password" placeholder="powtórz hasło" name="password2"><br>
+        <input type="submit" value="OK">
+    </form>
+</div>
+</body>
+</html>

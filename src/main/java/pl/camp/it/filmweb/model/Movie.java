@@ -1,24 +1,97 @@
 package pl.camp.it.filmweb.model;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity(name = "tmovie")
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private String title;
-    private String productionYear;// TODO: 2020-09-04 rok produkcji jako String?
-    @ManyToOne
+    @Column(nullable = false)
+    private String productionYear;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Director director;
-    @OneToMany // TODO: 2020-09-04 Jaka relacja? Ma być Set? Ma być takie pole w tej klasie?
+    @OneToMany
     private Set<Rating> ratings = new HashSet<>();
-    @OneToMany // TODO: 2020-09-04 jw.
+    @OneToMany
     private Set<Review> reviews = new HashSet<>();
-    private Category category;
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
     @ManyToOne
     private User user;
 
+    public Movie() {
+    }
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getProductionYear() {
+        return productionYear;
+    }
+
+    public void setProductionYear(String productionYear) {
+        this.productionYear = productionYear;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
 
@@ -30,14 +103,9 @@ public class Movie {
 
 
 
-    public enum Category {
+    public enum Genre {
         ACTION,
         COMEDY,
         DRAMA,
-        FANTASY,
-        HORROR,
-        ROMANCE,
-        THRILLER,
-        WESTERN
     }
 }

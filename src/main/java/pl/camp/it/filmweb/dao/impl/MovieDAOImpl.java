@@ -1,0 +1,47 @@
+package pl.camp.it.filmweb.dao.impl;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pl.camp.it.filmweb.dao.IMovieDAO;
+import pl.camp.it.filmweb.model.Movie;
+
+import java.util.List;
+
+@Repository
+public class MovieDAOImpl implements IMovieDAO {
+
+    @Autowired
+    SessionFactory sessionFactory;
+
+
+    @Override
+    public List<Movie> getAllMovies() {
+        Session session = this.sessionFactory.openSession();
+        Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie");
+
+        List<Movie> result = query.getResultList();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public void addMovie(Movie movie) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(movie);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
+}

@@ -1,0 +1,149 @@
+#logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50px;
+    background-size: contain;
+    background-image: url("logo.jpg");
+    background-repeat: no-repeat;
+    margin: 5px;
+}
+
+#user-menu {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    width: 40%;
+    height: 50px;
+}
+
+#basket-button {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-image: url("basket.png");
+    background-repeat: no-repeat;
+    float: right;
+    margin: 5px;
+}
+
+#login-button {
+    display: inline-block;
+    height: 50px;
+    width: 100px;
+    background-size: contain;
+    background-image: url("login-button.png");
+    background-repeat: no-repeat;
+    float: right;
+    margin: 5px;
+}
+
+#logout-button {
+    display: inline-block;
+    height: 50px;
+    width: 100px;
+    background-size: contain;
+    background-image: url("logout.jpg");
+    background-repeat: no-repeat;
+    float: right;
+    margin: 5px;
+}
+
+#addMovie-button {
+    display: inline-block;
+    height: 50px;
+    width: 100px;
+    background-size: contain;
+    background-image: url("addMovie.png");
+    background-repeat: no-repeat;
+    float: right;
+    margin: 5px;
+
+}
+
+
+
+#finder {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}
+
+#finder form {
+    width: 100%;
+    text-align: center;
+}
+
+#finder form input {
+    text-align: center;
+}
+
+
+#menu {
+    position: absolute;
+    top: 110px;
+    left: 5%;
+    width: 90%;
+    height: 50px;
+
+    text-align: center;
+    border-top: solid 1px black;
+}
+
+#menu a {
+    text-decoration: none;
+    color: black;
+    width: 120px;
+    padding-top: 3px;
+    display: inline-block;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    transition-duration: 0.5s;
+    transition-property: all;
+}
+
+#menu a:hover {
+    background: green;
+    color: white;
+}
+
+#content {
+    position: absolute;
+    top: 165px;
+    left: 5%;
+    width: 90%;
+}
+
+.book {
+    border: solid 1px black;
+    margin: 8px;
+    padding: 8px;
+}
+
+.book > div {
+    width: 100%
+}
+
+.label {
+    display: inline-block;
+    width: 30%
+}
+
+.value {
+    display: inline-block;
+    width: 69%;
+}
+
+.author-name {
+    display: inline-block;
+}
+
+.author-surname {
+    display: inline-block;
+    margin-left: 15px;
+}

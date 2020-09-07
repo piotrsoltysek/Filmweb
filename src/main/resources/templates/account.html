@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmweb</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="basket.css">
+
+</head>
+<body>
+
+<div th:replace="template.html :: logo"></div>
+<div th:replace="template.html :: userMenu"></div>
+<div th:replace="template.html :: menu"></div>
+
+<div id="content">
+    <div id="basket-info">Koszyk</div>
+    <div class="label">
+        <div class="title-label">Tytuł</div>
+        <div class="pieces-label">Ilość</div>
+    </div>
+
+    <th:block th:each="bookEntry : ${basket}">
+        <div class="basket-entry">
+            <div class="title" th:text="${bookEntry.key.title}"></div>
+            <div class="pieces" th:text="${bookEntry.value}"></div>
+        </div>
+    </th:block>
+
+</div>
+</body>
+</html>

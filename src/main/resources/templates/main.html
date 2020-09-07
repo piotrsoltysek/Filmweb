@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmweb</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+<div th:replace="template.html :: logo"></div>
+<div th:replace="template.html :: userMenu"></div>
+<div th:replace="template.html :: finderBar"></div>
+<div th:replace="template.html :: menu"></div>
+
+<br>
+
+<div id="content">
+    <th:block th:each="currentBook : ${books}">
+        <div class="book">
+            <div class="title">
+                <div class="label">Tytuł</div>
+                <div class="value" th:text="${currentBook.title}"></div>
+            </div>
+
+            <div class="isbn">
+                <div class="label">ISBM</div>
+                <div class="value" th:text="${currentBook.isbn}"></div>
+            </div>
+
+            <div class="author">
+                <div class="label">Autor:</div>
+                <div class="value">
+                    <div class="author-name" th:text="${currentBook.author.name}"></div>
+                    <div class="author-surname" th:text="${currentBook.author.surname}"></div>
+                </div>
+
+            </div>
+            <a th:href="@{/addToBasket/{id}(id=${currentBook.id})}">Do koszyka</a>
+        </div>
+    </th:block>
+</div>
+
+</body>
+</html>
