@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IUserService;
 import pl.camp.it.filmweb.session.SessionObject;
-
 import javax.annotation.Resource;
+
 
 @Controller
 public class UserController {

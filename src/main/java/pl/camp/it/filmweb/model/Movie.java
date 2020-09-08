@@ -21,12 +21,12 @@ public class Movie {
     private Set<Review> reviews = new HashSet<>();
     @Enumerated(EnumType.STRING)
     private Genre genre;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
+
 
     public Movie() {
     }
-
 
 
     public int getId() {
@@ -93,13 +93,17 @@ public class Movie {
         this.user = user;
     }
 
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", productionYear='" + productionYear + '\'' +
+                ", director=" + director +
+                ", genre=" + genre +
+                ", user=" + user +
+                '}';
+    }
 
 
 
@@ -107,5 +111,11 @@ public class Movie {
         ACTION,
         COMEDY,
         DRAMA,
+        FANTASY,
+        HORROR,
+        ROMANCE,
+        THRILLER,
+        WESTERN,
+        OTHER
     }
 }

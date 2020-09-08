@@ -10,6 +10,7 @@ public class SessionObject {
     private String lastFindPattern;
     private UserFilter userFilter;
 
+
     public User getUser() {
         return user;
     }

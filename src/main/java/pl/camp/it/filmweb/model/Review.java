@@ -2,6 +2,7 @@ package pl.camp.it.filmweb.model;
 
 import javax.persistence.*;
 
+
 @Entity(name = "treview")
 public class Review {
     @Id

@@ -8,14 +8,37 @@
 <body>
 <div class="container">
 
-    <form id="register-form" method="POST" >
-        <input type="text" placeholder="title" name="title"><br>
-        <input type="text" placeholder="productionYear" name="productionYear"><br>
-        <input type="text" placeholder="directorName" name="directorName"><br>
-        <input type="text" placeholder="directorSurname" name="directorSurname"><br>
-        <input type="text" placeholder="genre" name="genre"><br>
+    <form id="register-form" method="POST" th:object="${movie}" >
+        <input type="text" placeholder="tytuł" name="title" th:field="*{title}"><br>
+        <input type="text" placeholder="rok produkcji" name="productionYear" th:field="*{productionYear}"><br>
+        <div th:object="${director}">
+            <input type="text" placeholder="imię reżysera" name="name" th:field="*{name}"><br>
+            <input type="text" placeholder="nazwisko reżysera" name="surname" th:field="*{surname}"><br>
+        </div>
+
+        <input type="radio" id="action" name="genre" value="ACTION" th:field="*{genre}">
+        <label for="action">Akcja</label><br>
+        <input type="radio" id="drama" name="genre" value="DRAMA" th:field="*{genre}">
+        <label for="drama">Dramat</label><br>
+        <input type="radio" id="fantasy" name="genre" value="FANTASY" th:field="*{genre}">
+        <label for="fantasy">Fantasy</label><br>
+        <input type="radio" id="horror" name="genre" value="HORROR" th:field="*{genre}">
+        <label for="horror">Horror</label><br>
+        <input type="radio" id="comedy" name="genre" value="COMEDY" th:field="*{genre}">
+        <label for="comedy">Komedia</label><br>
+        <input type="radio" id="romance" name="genre" value="ROMANCE" th:field="*{genre}">
+        <label for="romance">Romans</label><br>
+        <input type="radio" id="thriller" name="genre" value="THRILLER" th:field="*{genre}">
+        <label for="thriller">Thriller</label><br>
+        <input type="radio" id="western" name="genre" value="WESTERN" th:field="*{genre}">
+        <label for="western">Western</label><br>
+        <input type="radio" id="other" name="genre" value="OTHER" th:field="*{genre}">
+        <label for="other">Inny</label><br>
+
         <input type="submit" value="OK">
     </form>
 </div>
 </body>
 </html>
+
+

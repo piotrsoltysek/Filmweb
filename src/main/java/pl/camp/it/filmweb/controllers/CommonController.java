@@ -3,16 +3,10 @@ package pl.camp.it.filmweb.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import pl.camp.it.filmweb.dao.IUserDAO;
-import pl.camp.it.filmweb.model.Director;
 import pl.camp.it.filmweb.model.Movie;
-import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IMovieService;
-import pl.camp.it.filmweb.services.IUserService;
 import pl.camp.it.filmweb.session.SessionObject;
 import javax.annotation.Resource;
 import java.util.List;
@@ -42,6 +36,4 @@ public class CommonController {
     public String defaultRedirect() {
         return "redirect:/main";
     }
-
-
 }

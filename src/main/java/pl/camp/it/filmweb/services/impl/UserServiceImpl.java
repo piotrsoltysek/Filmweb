@@ -7,6 +7,7 @@ import pl.camp.it.filmweb.dao.IUserDAO;
 import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IUserService;
 
+
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -53,6 +54,4 @@ public class UserServiceImpl implements IUserService {
     public User getUserLogin(String login) {
         return this.userDAO.getUserByLogin(login);
     }
-
-
 }

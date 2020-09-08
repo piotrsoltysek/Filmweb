@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity(name = "tuser")
 public class User {
     @Id
@@ -17,8 +18,9 @@ public class User {
     private Set<Rating> ratings = new HashSet<>();
     @OneToMany
     private Set<Review> reviews = new HashSet<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Movie> movies = new HashSet<>();
+
 
     public int getId() {
         return id;
@@ -67,6 +69,11 @@ public class User {
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
+
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
+    }
+
 
     @Override
     public String toString() {

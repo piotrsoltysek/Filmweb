@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.filmweb.dao.IUserDAO;
 import pl.camp.it.filmweb.model.User;
-
 import javax.persistence.NoResultException;
+
 
 @Repository
 public class UserDAOImpl implements IUserDAO {
 
     @Autowired
     SessionFactory sessionFactory;
+
 
     @Override
     public User getUserByLogin(String login) {
@@ -30,7 +31,6 @@ public class UserDAOImpl implements IUserDAO {
         } catch (NoResultException e) {
             return null;
         }
-
     }
 
     @Override
@@ -63,6 +63,5 @@ public class UserDAOImpl implements IUserDAO {
         } catch (NoResultException e) {
             return null;
         }
-
     }
 }

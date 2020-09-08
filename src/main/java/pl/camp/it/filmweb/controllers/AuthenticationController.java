@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.camp.it.filmweb.dao.IUserDAO;
 import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IUserService;
 import pl.camp.it.filmweb.session.SessionObject;
@@ -21,7 +20,6 @@ public class AuthenticationController {
 
     @Resource
     SessionObject sessionObject;
-
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

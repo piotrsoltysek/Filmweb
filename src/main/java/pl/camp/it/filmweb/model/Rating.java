@@ -2,6 +2,7 @@ package pl.camp.it.filmweb.model;
 
 import javax.persistence.*;
 
+
 @Entity(name = "trating")
 public class Rating {
     @Id
@@ -13,6 +14,7 @@ public class Rating {
     private Movie movie;
     @ManyToOne
     private User user;
+
 
     public int getId() {
         return id;

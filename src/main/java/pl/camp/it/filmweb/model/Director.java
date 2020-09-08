@@ -2,6 +2,7 @@ package pl.camp.it.filmweb.model;
 
 import javax.persistence.*;
 
+
 @Entity(name = "tdirector")
 public class Director {
     @Id
@@ -12,6 +13,7 @@ public class Director {
     @Column(nullable = false)
     private String surname;
 
+
     public Director() {
     }
 
@@ -19,6 +21,7 @@ public class Director {
         this.name = name;
         this.surname = surname;
     }
+
 
     public int getId() {
         return id;
@@ -42,5 +45,14 @@ public class Director {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "Director{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
     }
 }
