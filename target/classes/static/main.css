@@ -119,13 +119,13 @@
     width: 90%;
 }
 
-.book {
+.movie {
     border: solid 1px black;
     margin: 8px;
     padding: 8px;
 }
 
-.book > div {
+.movie > div {
     width: 100%
 }
 
@@ -139,11 +139,11 @@
     width: 69%;
 }
 
-.author-name {
+.director-name {
     display: inline-block;
 }
 
-.author-surname {
+.director-surname {
     display: inline-block;
     margin-left: 15px;
 }

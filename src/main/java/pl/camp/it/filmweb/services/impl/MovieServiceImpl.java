@@ -50,4 +50,9 @@ public class MovieServiceImpl implements IMovieService {
         }
         return false;
     }
+
+    @Override
+    public List<Movie> getMoviesByGenre(Movie.Genre genre) {
+        return this.movieDAO.getMoviesByGenre(genre);
+    }
 }

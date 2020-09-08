@@ -73,4 +73,15 @@ public class MovieDAOImpl implements IMovieDAO {
             return null;
         }
     }
+
+    @Override
+    public List<Movie> getMoviesByGenre(Movie.Genre genre) {
+        Session session = this.sessionFactory.openSession();
+        Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie WHERE genre = :genre");
+        query.setParameter("genre", genre);
+
+        List<Movie> result = query.getResultList();
+        session.close();
+        return result;
+    }
 }

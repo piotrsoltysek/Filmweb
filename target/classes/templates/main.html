@@ -15,27 +15,23 @@
 <br>
 
 <div id="content">
-    <th:block th:each="currentBook : ${books}">
-        <div class="book">
+    <th:block th:each="currentMovie : ${movies}">
+        <div class="movie">
             <div class="title">
                 <div class="label">Tytuł</div>
-                <div class="value" th:text="${currentBook.title}"></div>
+                <div class="value" th:text="${currentMovie.title}"></div>
             </div>
 
-            <div class="isbn">
-                <div class="label">ISBM</div>
-                <div class="value" th:text="${currentBook.isbn}"></div>
-            </div>
 
-            <div class="author">
-                <div class="label">Autor:</div>
+            <div class="director">
+                <div class="label">Reżyser:</div>
                 <div class="value">
-                    <div class="author-name" th:text="${currentBook.author.name}"></div>
-                    <div class="author-surname" th:text="${currentBook.author.surname}"></div>
+                    <div class="director-name" th:text="${currentMovie.director.name}"></div>
+                    <div class="director-surname" th:text="${currentMovie.director.surname}"></div>
                 </div>
 
             </div>
-            <a th:href="@{/addToBasket/{id}(id=${currentBook.id})}">Do koszyka</a>
+            <a th:href="@{/addRating/{id}(id=${currentMovie.id})}">Dodaj ocenę</a>
         </div>
     </th:block>
 </div>

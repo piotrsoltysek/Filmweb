@@ -9,4 +9,5 @@ public interface IMovieDAO {
     List<Director> getAllDirectors();
     void addMovie(Movie movie);
     Director getDirectorByNameAndSurname(String name, String surname);
+    List<Movie> getMoviesByGenre(Movie.Genre genre);
 }

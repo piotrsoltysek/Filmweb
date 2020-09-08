@@ -8,4 +8,5 @@ public interface IMovieService {
     List<Movie> getAllMovies();
     void addMovie(Movie movie, Director director);
     boolean directorInDB(Director director);
+    List<Movie> getMoviesByGenre(Movie.Genre genre);
 }
