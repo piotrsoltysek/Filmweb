@@ -3,6 +3,7 @@ package pl.camp.it.filmweb.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.camp.it.filmweb.dao.IMovieDAO;
+import pl.camp.it.filmweb.filter.UserFilter;
 import pl.camp.it.filmweb.model.Director;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.services.IMovieService;
@@ -74,5 +75,27 @@ public class MovieServiceImpl implements IMovieService {
             result.addAll(moviesForDirector);
         }
         return new ArrayList<>(result);
+    }
+
+    @Override
+    public List<Movie> findMoviesByFilter(UserFilter userFilter) {
+
+        Movie.Genre genre = userFilter.getGenre();
+        String pattern = userFilter.getLastFindPattern();
+        String productionYear = userFilter.getProductionYear();
+
+        if (pattern != null && genre == null && productionYear == null) {
+            return findMovies(userFilter.getLastFindPattern());
+        }
+
+        if (pattern != null && genre != null && productionYear == null) {
+            return this.movieDAO.getMoviesByPatternAndGenre(pattern, genre);
+        }
+
+        if (pattern == null && genre != null && productionYear == null) {
+            return this.movieDAO.getMoviesByGenre(genre);
+        }
+
+        return null;
     }
 }

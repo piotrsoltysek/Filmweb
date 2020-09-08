@@ -31,6 +31,12 @@ public class UserFilter {
         this.productionYear = productionYear;
     }
 
+    public void reset() {
+        this.lastFindPattern = null;
+        this.genre = null;
+        this.productionYear = null;
+    }
+
     @Override
     public String toString() {
         return "UserFilter{" +

@@ -13,4 +13,5 @@ public interface IMovieDAO {
     List<Movie> findMovies(String pattern);
     List<Director> findDirectors(String pattern);
     List<Movie> getMoviesByDirectorId(int id);
+    List<Movie> getMoviesByPatternAndGenre(String pattern, Movie.Genre genre);
 }

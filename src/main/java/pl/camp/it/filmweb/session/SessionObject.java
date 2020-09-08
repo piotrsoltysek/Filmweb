@@ -7,7 +7,6 @@ import pl.camp.it.filmweb.model.User;
 public class SessionObject {
     private User user;
     private String lastAddress;
-    private String lastFindPattern;
     private UserFilter userFilter;
 
 
@@ -25,14 +24,6 @@ public class SessionObject {
 
     public void setLastAddress(String lastAddress) {
         this.lastAddress = lastAddress;
-    }
-
-    public String getLastFindPattern() {
-        return lastFindPattern;
-    }
-
-    public void setLastFindPattern(String lastFindPattern) {
-        this.lastFindPattern = lastFindPattern;
     }
 
     public UserFilter getUserFilter() {

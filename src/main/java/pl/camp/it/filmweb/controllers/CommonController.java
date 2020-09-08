@@ -26,6 +26,7 @@ public class CommonController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(Model model) {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
+        sessionObject.getUserFilter().reset();
 
         List<Movie> movies = this.movieService.getAllMovies();
         model.addAttribute("movies", movies);
@@ -41,7 +42,7 @@ public class CommonController {
     @RequestMapping(value = "/find", method = RequestMethod.GET)
     public String findMovies(Model model) {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMovies(sessionObject.getLastFindPattern());
+        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/find");
         return "main";
@@ -50,8 +51,9 @@ public class CommonController {
     @RequestMapping(value = "/find", method = RequestMethod.POST)
     public String findMovies(Model model, @RequestParam String pattern) {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMovies(pattern);
-        this.sessionObject.setLastFindPattern(pattern);
+        sessionObject.getUserFilter().setLastFindPattern(pattern);
+        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.sessionObject.getUserFilter().setLastFindPattern(pattern);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/find");
         return "main";

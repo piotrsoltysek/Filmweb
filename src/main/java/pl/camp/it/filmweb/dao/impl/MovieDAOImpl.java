@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.filmweb.dao.IMovieDAO;
+import pl.camp.it.filmweb.filter.UserFilter;
 import pl.camp.it.filmweb.model.Director;
 import pl.camp.it.filmweb.model.Movie;
 import javax.persistence.NoResultException;
@@ -95,6 +96,19 @@ public class MovieDAOImpl implements IMovieDAO {
         session.close();
         return result;
     }
+
+    @Override
+    public List<Movie> getMoviesByPatternAndGenre(String pattern, Movie.Genre genre) {
+        Session session = this.sessionFactory.openSession();
+        Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie WHERE title LIKE :title and genre = :genre");
+        query.setParameter("title", "%" + pattern + "%");
+        query.setParameter("genre", genre);
+
+        List<Movie> result = query.getResultList();
+        session.close();
+        return result;
+    }
+
 
     @Override
     public List<Director> findDirectors(String pattern) {
