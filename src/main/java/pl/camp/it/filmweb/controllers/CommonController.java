@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.session.SessionObject;
@@ -35,5 +36,24 @@ public class CommonController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String defaultRedirect() {
         return "redirect:/main";
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    public String findMovies(Model model) {
+        model.addAttribute("isLogged", (sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMovies(sessionObject.getLastFindPattern());
+        model.addAttribute("movies", movies);
+        this.sessionObject.setLastAddress("/find");
+        return "main";
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String findMovies(Model model, @RequestParam String pattern) {
+        model.addAttribute("isLogged", (sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMovies(pattern);
+        this.sessionObject.setLastFindPattern(pattern);
+        model.addAttribute("movies", movies);
+        this.sessionObject.setLastAddress("/find");
+        return "main";
     }
 }

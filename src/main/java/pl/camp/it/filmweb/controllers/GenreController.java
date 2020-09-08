@@ -27,6 +27,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.ACTION);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/action");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.ACTION);
         return "main";
     }
 
@@ -36,6 +37,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.COMEDY);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/comedy");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.COMEDY);
         return "main";
     }
 
@@ -45,6 +47,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.DRAMA);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/drama");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.DRAMA);
         return "main";
     }
 
@@ -54,6 +57,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.FANTASY);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/fantasy");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.FANTASY);
         return "main";
     }
 
@@ -63,6 +67,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.HORROR);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/horror");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.HORROR);
         return "main";
     }
 
@@ -72,6 +77,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.ROMANCE);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/romance");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.ROMANCE);
         return "main";
     }
 
@@ -81,6 +87,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.THRILLER);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/thriller");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.THRILLER);
         return "main";
     }
 
@@ -90,6 +97,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.WESTERN);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/western");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.WESTERN);
         return "main";
     }
 
@@ -99,6 +107,7 @@ public class GenreController {
         List<Movie> movies = this.movieService.getMoviesByGenre(Movie.Genre.OTHER);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/other");
+        this.sessionObject.getUserFilter().setGenre(Movie.Genre.OTHER);
         return "main";
     }
 }

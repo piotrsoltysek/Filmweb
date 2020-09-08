@@ -84,4 +84,38 @@ public class MovieDAOImpl implements IMovieDAO {
         session.close();
         return result;
     }
+
+    @Override
+    public List<Movie> findMovies(String pattern) {
+        Session session = this.sessionFactory.openSession();
+        Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie WHERE title LIKE :title");
+        query.setParameter("title", "%" + pattern + "%");
+
+        List<Movie> result = query.getResultList();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public List<Director> findDirectors(String pattern) {
+        Session session = this.sessionFactory.openSession();
+        Query<Director> query = session.createQuery("FROM pl.camp.it.filmweb.model.Director WHERE name LIKE :name OR surname LIKE :surname");
+        query.setParameter("name", "%" + pattern + "%");
+        query.setParameter("surname", "%" + pattern + "%");
+
+        List<Director> result = query.getResultList();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public List<Movie> getMoviesByDirectorId(int id) {
+        Session session = this.sessionFactory.openSession();
+        Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie WHERE director_id = :director");
+        query.setParameter("director", id);
+
+        List<Movie> result = query.getResultList();
+        session.close();
+        return result;
+    }
 }

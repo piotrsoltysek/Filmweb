@@ -2,6 +2,7 @@ package pl.camp.it.filmweb.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "tmovie")
@@ -93,6 +94,8 @@ public class Movie {
         this.user = user;
     }
 
+
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -103,6 +106,20 @@ public class Movie {
                 ", genre=" + genre +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Movie) {
+            Movie movie = (Movie) o;
+            return movie.id == this.id;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
     }
 
 

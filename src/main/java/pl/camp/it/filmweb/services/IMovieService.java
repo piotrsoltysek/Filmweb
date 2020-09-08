@@ -9,4 +9,5 @@ public interface IMovieService {
     void addMovie(Movie movie, Director director);
     boolean directorInDB(Director director);
     List<Movie> getMoviesByGenre(Movie.Genre genre);
+    List<Movie> findMovies(String pattern);
 }

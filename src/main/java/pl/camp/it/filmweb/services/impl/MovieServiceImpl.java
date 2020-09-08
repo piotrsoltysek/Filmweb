@@ -7,7 +7,11 @@ import pl.camp.it.filmweb.model.Director;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.session.SessionObject;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -54,5 +58,21 @@ public class MovieServiceImpl implements IMovieService {
     @Override
     public List<Movie> getMoviesByGenre(Movie.Genre genre) {
         return this.movieDAO.getMoviesByGenre(genre);
+    }
+
+    @Override
+    public List<Movie> findMovies(String pattern) {
+        Set<Movie> result = new HashSet<>();
+        List<Movie> movies = this.movieDAO.findMovies(pattern);
+
+        result.addAll(movies);
+
+        List<Director> directors = this.movieDAO.findDirectors(pattern);
+        for (Director director : directors) {
+            List<Movie> moviesForDirector = this.movieDAO.getMoviesByDirectorId(director.getId());
+
+            result.addAll(moviesForDirector);
+        }
+        return new ArrayList<>(result);
     }
 }

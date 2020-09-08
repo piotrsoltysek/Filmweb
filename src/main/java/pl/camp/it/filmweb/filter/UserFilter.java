@@ -30,4 +30,13 @@ public class UserFilter {
     public void setProductionYear(String productionYear) {
         this.productionYear = productionYear;
     }
+
+    @Override
+    public String toString() {
+        return "UserFilter{" +
+                "lastFindPattern='" + lastFindPattern + '\'' +
+                ", genre=" + genre +
+                ", productionYear='" + productionYear + '\'' +
+                '}';
+    }
 }
