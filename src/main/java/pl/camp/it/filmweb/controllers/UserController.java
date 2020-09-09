@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.camp.it.filmweb.dao.IRatingDAO;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IMovieService;
+import pl.camp.it.filmweb.services.IRatingService;
 import pl.camp.it.filmweb.services.IUserService;
 import pl.camp.it.filmweb.session.SessionObject;
 import javax.annotation.Resource;
@@ -26,6 +28,14 @@ public class UserController {
 
     @Resource
     SessionObject sessionObject;
+
+
+    @Autowired
+    IRatingService ratingService;
+
+    @Autowired
+    IRatingDAO ratingDAO;
+
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showRegister(Model model) {
@@ -57,6 +67,9 @@ public class UserController {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
 
         List<Movie> movies = this.movieService.findMoviesByUserId(sessionObject.getUser().getId());
+        for (Movie tempMovie : movies) {
+            tempMovie.setAverage(this.ratingService.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
+        }
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/user");
         return "main";

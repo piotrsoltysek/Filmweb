@@ -8,6 +8,8 @@ import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.services.IReviewService;
 import pl.camp.it.filmweb.session.SessionObject;
 
+import java.util.List;
+
 @Service
 public class ReviewServiceImpl implements IReviewService {
 
@@ -26,5 +28,10 @@ public class ReviewServiceImpl implements IReviewService {
         review.setMovie(this.movieService.findMovieById(movieId));
         review.setUser(this.sessionObject.getUser());
         this.reviewDAO.addReview(review);
+    }
+
+    @Override
+    public List<Review> getReviewsByMovieId(int id) {
+        return this.reviewDAO.getReviewsByMovieId(id);
     }
 }

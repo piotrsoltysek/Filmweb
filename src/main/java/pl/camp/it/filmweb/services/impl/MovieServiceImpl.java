@@ -120,4 +120,6 @@ public class MovieServiceImpl implements IMovieService {
     public Movie findMovieById(int id) {
         return this.movieDAO.getMovieById(id);
     }
+
+
 }

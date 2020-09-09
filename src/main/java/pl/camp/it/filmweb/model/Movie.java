@@ -19,7 +19,15 @@ public class Movie {
     private Genre genre;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
+    private double average;
 
+    public double getAverage() {
+        return average;
+    }
+
+    public void setAverage(double average) {
+        this.average = average;
+    }
 
     public int getId() {
         return id;

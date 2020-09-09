@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.camp.it.filmweb.dao.IRatingDAO;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.services.IMovieService;
+import pl.camp.it.filmweb.services.IRatingService;
+import pl.camp.it.filmweb.services.IReviewService;
 import pl.camp.it.filmweb.session.SessionObject;
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,6 +23,16 @@ public class GenreController {
 
     @Autowired
     IMovieService movieService;
+
+    @Autowired
+    IReviewService reviewService;
+
+    @Autowired
+    IRatingService ratingService;
+
+    @Autowired
+    IRatingDAO ratingDAO;
+
 
     @RequestMapping(value = "/action", method = RequestMethod.GET)
     public String actionFilms(Model model) {
@@ -97,6 +110,9 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.WESTERN);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        for (Movie tempMovie : movies) {
+            tempMovie.setAverage(this.ratingService.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
+        }
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/western");
         return "main";

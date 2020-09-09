@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmweb</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+<div th:replace="template.html :: logo"></div>
+<div th:replace="template.html :: userMenu"></div>
+<div th:replace="template.html :: finderBar"></div>
+<div th:replace="template.html :: menu"></div>
+
+
+
+<div id="content">
+    <th:block th:each="currentReview : ${reviews}">
+        <div class="movie">
+            <div class="title">
+                <div class="value" th:text="${currentReview.content}"></div>
+            </div>
+
+
+        </div>
+    </th:block>
+</div>
+
+</body>
+</html>

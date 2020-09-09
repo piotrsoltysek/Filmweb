@@ -15,4 +15,5 @@ public interface IMovieService {
     List<Movie> findMoviesByFilter(UserFilter userFilter);
     List<Movie> findMoviesByUserId(int id);
     Movie findMovieById(int id);
+
 }

@@ -29,7 +29,7 @@
         </property>
 
         <property name="hbm2ddl.auto">
-            create
+            update
         </property>
 
         <mapping class="pl.camp.it.filmweb.model.User"/>

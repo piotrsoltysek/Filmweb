@@ -20,6 +20,10 @@
             <div class="title">
                 <div class="label">Tytuł</div>
                 <div class="value" th:text="${currentMovie.title}"></div>
+                <div class="value" th:text="${currentMovie.productionYear}"></div>
+                <div class="value" th:text="${currentMovie.getAverage()}"></div>
+
+                <a th:href="@{/reviews/{id}(id=${currentMovie.id})}">Zobacz recenzje</a>
             </div>
 
 

@@ -16,6 +16,7 @@ import pl.camp.it.filmweb.services.IRatingService;
 import pl.camp.it.filmweb.services.IReviewService;
 import pl.camp.it.filmweb.session.SessionObject;
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Controller
@@ -78,8 +79,19 @@ public class MovieController {
         this.ratingService.addRating(rating, movieId);
         return "redirect:" + sessionObject.getLastAddress();
     }
-}
 
+    @RequestMapping(value = "/reviews/{movieId}", method = RequestMethod.GET)
+    public String showMovieReview(@PathVariable int movieId, Model model) {
+        Movie movie = this.movieService.findMovieById(movieId);
+        List<Review> reviews = this.reviewService.getReviewsByMovieId(movieId);
+        model.addAttribute("isLogged", (sessionObject.getUser() != null));
+        model.addAttribute("movieId", movieId);
+        model.addAttribute("reviews", reviews);
+
+        return "reviews";
+    }
+
+}
 
 
 
