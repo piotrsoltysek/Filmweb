@@ -12,7 +12,7 @@ public class Review {
     private String content;
     @ManyToOne
     private Movie movie;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
 
 

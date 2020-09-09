@@ -14,4 +14,5 @@ public interface IMovieService {
     List<Movie> findMoviesByPatternAndGenre(String pattern, Movie.Genre genre);
     List<Movie> findMoviesByFilter(UserFilter userFilter);
     List<Movie> findMoviesByUserId(int id);
+    Movie findMovieById(int id);
 }

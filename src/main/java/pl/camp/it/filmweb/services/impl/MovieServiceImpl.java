@@ -37,9 +37,7 @@ public class MovieServiceImpl implements IMovieService {
             movie.setDirector(director);
         }
         movie.setUser(sessionObject.getUser());
-        System.out.println("movie: " + movie);
         this.movieDAO.addMovie(movie);
-        System.out.println("movies: " + getAllMovies());
     }
 
     @Override
@@ -114,5 +112,10 @@ public class MovieServiceImpl implements IMovieService {
     @Override
     public List<Movie> findMoviesByUserId(int id) {
         return this.movieDAO.getMoviesByUserId(id);
+    }
+
+    @Override
+    public Movie findMovieById(int id) {
+        return this.movieDAO.getMovieById(id);
     }
 }

@@ -156,4 +156,15 @@ public class MovieDAOImpl implements IMovieDAO {
         session.close();
         return result;
     }
+
+    @Override
+    public Movie getMovieById(int id) {
+        Session session = this.sessionFactory.openSession();
+        Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie WHERE id = :id");
+        query.setParameter("id", id);
+
+        Movie result = query.getSingleResult();
+        session.close();
+        return result;
+    }
 }

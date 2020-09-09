@@ -31,7 +31,13 @@
                 </div>
 
             </div>
-            <a th:href="@{/addRating/{id}(id=${currentMovie.id})}">Dodaj ocenę</a>
+
+            <th:block th:if="${isLogged}">
+                <a th:href="@{/addRating/{id}(id=${currentMovie.id})}">Dodaj ocenę</a>
+                <a th:href="@{/addReview/{id}(id=${currentMovie.id})}">Dodaj recenzję</a>
+
+            </th:block>
+
         </div>
     </th:block>
 </div>
