@@ -110,4 +110,9 @@ public class MovieServiceImpl implements IMovieService {
         }
         return new ArrayList<>();
     }
+
+    @Override
+    public List<Movie> findMoviesByUserId(int id) {
+        return this.movieDAO.getMoviesByUserId(id);
+    }
 }
