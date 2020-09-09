@@ -15,10 +15,6 @@ public class Movie {
     private String productionYear;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Director director;
-    @OneToMany
-    private Set<Rating> ratings = new HashSet<>();
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Review> reviews = new HashSet<>();
     @Enumerated(EnumType.STRING)
     private Genre genre;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -57,21 +53,6 @@ public class Movie {
         this.director = director;
     }
 
-    public Set<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Set<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public Set<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     public Genre getGenre() {
         return genre;
@@ -89,9 +70,6 @@ public class Movie {
         this.user = user;
     }
 
-    public void addReview(Review review) {
-        this.reviews.add(review);
-    }
 
 
 

@@ -10,7 +10,7 @@ public class Review {
     private int id;
     @Column(nullable = false)
     private String content;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Movie movie;
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;

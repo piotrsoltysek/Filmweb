@@ -14,12 +14,7 @@ public class User {
     private String login;
     @Column(nullable = false)
     private String password;
-    @OneToMany
-    private Set<Rating> ratings = new HashSet<>();
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Review> reviews = new HashSet<>();
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Movie> movies = new HashSet<>();
+
 
 
     public int getId() {
@@ -46,37 +41,7 @@ public class User {
         this.password = password;
     }
 
-    public Set<Rating> getRatings() {
-        return ratings;
-    }
 
-    public void setRatings(Set<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public Set<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public Set<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
-    }
-
-    public void addMovie(Movie movie) {
-        this.movies.add(movie);
-    }
-
-    public void addReview(Review review) {
-        this.reviews.add(review);
-    }
 
     @Override
     public boolean equals(Object o) {

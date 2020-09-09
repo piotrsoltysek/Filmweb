@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmweb</title>
+    <link rel="stylesheet" type="text/css" href="register.css">
+</head>
+<body>
+<div class="container">
+
+    <form id="register-form" method="POST" th:object="${rating}" >
+        <label for="score">Ocena</label>
+        <select name="score" id="score" th:field="*{score}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+
+        <input type="submit" value="OK">
+    </form>
+</div>
+</body>
+</html>
+

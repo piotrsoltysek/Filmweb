@@ -10,9 +10,9 @@ public class Rating {
     private int id;
     @Column(nullable = false)
     private int score;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Movie movie;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
 
@@ -46,5 +46,29 @@ public class Rating {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Rating) {
+            Rating rating = (Rating) o;
+            return rating.id == this.id;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", score=" + score +
+                ", movie=" + movie +
+                ", user=" + user +
+                '}';
     }
 }
