@@ -9,7 +9,8 @@ public interface IMovieService {
     List<Movie> getAllMovies();
     void addMovie(Movie movie, Director director);
     boolean directorInDB(Director director);
-    List<Movie> getMoviesByGenre(Movie.Genre genre);
-    List<Movie> findMovies(String pattern);
+    List<Movie> findMoviesByGenre(Movie.Genre genre);
+    List<Movie> findMoviesByPattern(String pattern);
+    List<Movie> findMoviesByPatternAndGenre(String pattern, Movie.Genre genre);
     List<Movie> findMoviesByFilter(UserFilter userFilter);
 }

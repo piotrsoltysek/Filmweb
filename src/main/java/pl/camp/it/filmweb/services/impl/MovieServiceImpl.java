@@ -8,7 +8,6 @@ import pl.camp.it.filmweb.model.Director;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.session.SessionObject;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -57,22 +56,34 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(Movie.Genre genre) {
+    public List<Movie> findMoviesByGenre(Movie.Genre genre) {
         return this.movieDAO.getMoviesByGenre(genre);
     }
 
     @Override
-    public List<Movie> findMovies(String pattern) {
+    public List<Movie> findMoviesByPattern(String pattern) {
         Set<Movie> result = new HashSet<>();
-        List<Movie> movies = this.movieDAO.findMovies(pattern);
+        List<Movie> movies = this.movieDAO.getMoviesByPattern(pattern);
 
         result.addAll(movies);
 
-        List<Director> directors = this.movieDAO.findDirectors(pattern);
+        List<Director> directors = this.movieDAO.getDirectorsByPattern(pattern);
         for (Director director : directors) {
             List<Movie> moviesForDirector = this.movieDAO.getMoviesByDirectorId(director.getId());
 
             result.addAll(moviesForDirector);
+        }
+        return new ArrayList<>(result);
+    }
+
+    @Override
+    public List<Movie> findMoviesByPatternAndGenre(String pattern, Movie.Genre genre) {
+        Set<Movie> result = new HashSet<>();
+
+        for (Movie movie : findMoviesByPattern(pattern)) {
+            if (movie.getGenre().equals(genre)) {
+                result.add(movie);
+            }
         }
         return new ArrayList<>(result);
     }
@@ -84,18 +95,19 @@ public class MovieServiceImpl implements IMovieService {
         String pattern = userFilter.getLastFindPattern();
         String productionYear = userFilter.getProductionYear();
 
+        //pattern
         if (pattern != null && genre == null && productionYear == null) {
-            return findMovies(userFilter.getLastFindPattern());
+            return findMoviesByPattern(pattern);
         }
-
+        //pattern & genre
         if (pattern != null && genre != null && productionYear == null) {
-            return this.movieDAO.getMoviesByPatternAndGenre(pattern, genre);
-        }
+            return findMoviesByPatternAndGenre(pattern, genre);
 
+        }
+        //genre
         if (pattern == null && genre != null && productionYear == null) {
-            return this.movieDAO.getMoviesByGenre(genre);
+            return findMoviesByGenre(genre);
         }
-
-        return null;
+        return new ArrayList<>();
     }
 }

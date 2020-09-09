@@ -2,7 +2,6 @@ package pl.camp.it.filmweb.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "tmovie")
@@ -24,10 +23,6 @@ public class Movie {
     private Genre genre;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
-
-
-    public Movie() {
-    }
 
 
     public int getId() {
@@ -95,7 +90,6 @@ public class Movie {
     }
 
 
-
     @Override
     public String toString() {
         return "Movie{" +
@@ -123,7 +117,6 @@ public class Movie {
     }
 
 
-
     public enum Genre {
         ACTION,
         COMEDY,
@@ -133,6 +126,6 @@ public class Movie {
         ROMANCE,
         THRILLER,
         WESTERN,
-        OTHER
+        OTHER;
     }
 }
