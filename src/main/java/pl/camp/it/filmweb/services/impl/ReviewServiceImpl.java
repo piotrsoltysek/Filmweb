@@ -25,6 +25,8 @@ public class ReviewServiceImpl implements IReviewService {
     public void addReview(Review review, int movieId) {
         review.setMovie(this.movieService.findMovieById(movieId));
         review.setUser(this.sessionObject.getUser());
+        this.sessionObject.getUser().getReviews().add(review);
+        this.movieService.findMovieById(movieId).getReviews().add(review);
         this.reviewDAO.addReview(review);
     }
 }

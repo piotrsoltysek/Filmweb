@@ -10,9 +10,9 @@ public class Review {
     private int id;
     @Column(nullable = false)
     private String content;
-    @ManyToOne
-    private Movie movie;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Movie movie;
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
 
@@ -46,5 +46,29 @@ public class Review {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Review) {
+            Review review = (Review) o;
+            return review.id == this.id;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", movie=" + movie +
+                ", user=" + user +
+                '}';
     }
 }

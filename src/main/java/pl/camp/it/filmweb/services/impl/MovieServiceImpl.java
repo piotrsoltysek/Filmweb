@@ -45,7 +45,9 @@ public class MovieServiceImpl implements IMovieService {
 
         for (Director tempDirector : movieDAO.getAllDirectors()) {
             if (tempDirector.getName().equals(director.getName())) {
+                System.out.println("name the same");
                 if (tempDirector.getSurname().equals(director.getSurname())) {
+                    System.out.println("surname the same");
                     return true;
                 }
             }

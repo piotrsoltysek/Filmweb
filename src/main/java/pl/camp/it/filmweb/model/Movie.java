@@ -17,7 +17,7 @@ public class Movie {
     private Director director;
     @OneToMany
     private Set<Rating> ratings = new HashSet<>();
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
     @Enumerated(EnumType.STRING)
     private Genre genre;
@@ -88,6 +88,12 @@ public class Movie {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+
 
 
     @Override

@@ -16,9 +16,9 @@ public class User {
     private String password;
     @OneToMany
     private Set<Rating> ratings = new HashSet<>();
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Movie> movies = new HashSet<>();
 
 
@@ -72,6 +72,24 @@ public class User {
 
     public void addMovie(Movie movie) {
         this.movies.add(movie);
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof User) {
+            User user = (User) o;
+            return user.id == this.id;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
     }
 
 
