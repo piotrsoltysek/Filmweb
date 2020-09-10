@@ -9,4 +9,6 @@ public interface IReviewDAO {
     List<Review> getAllReviews();
     List<Review> getReviewsByUserId(int id);
     List<Review> getReviewsByMovieId(int id);
+    List<Review> getUserReview(int userId, int movieId);
+
 }

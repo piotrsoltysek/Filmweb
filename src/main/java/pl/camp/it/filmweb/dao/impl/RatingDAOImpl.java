@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.filmweb.dao.IRatingDAO;
+import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.model.Rating;
 import pl.camp.it.filmweb.model.Review;
 
@@ -41,6 +42,19 @@ public class RatingDAOImpl implements IRatingDAO {
         Session session = this.sessionFactory.openSession();
         Query<Rating> query = session.createQuery("FROM pl.camp.it.filmweb.model.Rating WHERE movie_id = :movie");
         query.setParameter("movie", id);
+
+        List<Rating> result = query.getResultList();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public List<Rating> getUserRate(int userId, int movieId) {
+        Session session = this.sessionFactory.openSession();
+        System.out.println("query");
+        Query<Rating> query = session.createQuery("FROM pl.camp.it.filmweb.model.Rating WHERE user_id = :userId AND movie_id = :movieId");
+        query.setParameter("userId", userId);
+        query.setParameter("movieId", movieId);
 
         List<Rating> result = query.getResultList();
         session.close();

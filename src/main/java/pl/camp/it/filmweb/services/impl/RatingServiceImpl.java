@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.camp.it.filmweb.dao.IRatingDAO;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.model.Rating;
+import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.services.IRatingService;
 import pl.camp.it.filmweb.session.SessionObject;
@@ -25,9 +26,11 @@ public class RatingServiceImpl implements IRatingService {
 
     @Override
     public void addRating(Rating rating, int movieId) {
-        rating.setMovie(this.movieService.findMovieById(movieId));
-        rating.setUser(this.sessionObject.getUser());
-        this.ratingDAO.addRating(rating);
+        if (!alreadyRated(this.sessionObject.getUser(), this.movieService.findMovieById(movieId))) {
+            rating.setMovie(this.movieService.findMovieById(movieId));
+            rating.setUser(this.sessionObject.getUser());
+            this.ratingDAO.addRating(rating);
+        }
     }
 
     @Override
@@ -51,5 +54,13 @@ public class RatingServiceImpl implements IRatingService {
             tempMovie.setAverage(this.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
         }
         return movies;
+    }
+
+    @Override
+    public boolean alreadyRated(User user, Movie movie) {
+        if (this.ratingDAO.getUserRate(user.getId(), movie.getId()).isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

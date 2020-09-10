@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.filmweb.dao.IReviewDAO;
 import pl.camp.it.filmweb.model.Movie;
+import pl.camp.it.filmweb.model.Rating;
 import pl.camp.it.filmweb.model.Review;
 import java.util.List;
 
@@ -65,4 +66,17 @@ public class ReviewDAOImpl implements IReviewDAO {
         session.close();
         return result;
     }
+
+    @Override
+    public List<Review> getUserReview(int userId, int movieId) {
+            Session session = this.sessionFactory.openSession();
+            System.out.println("query");
+            Query<Review> query = session.createQuery("FROM pl.camp.it.filmweb.model.Review WHERE user_id = :userId AND movie_id = :movieId");
+            query.setParameter("userId", userId);
+            query.setParameter("movieId", movieId);
+
+            List<Review> result = query.getResultList();
+            session.close();
+            return result;
+        }
 }

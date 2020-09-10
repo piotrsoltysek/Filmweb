@@ -7,5 +7,6 @@ import java.util.List;
 public interface IRatingDAO {
     void addRating(Rating rating);
     List<Rating> getRatingByMovieId(int id);
+    List<Rating> getUserRate(int userId, int movieId);
 
 }
