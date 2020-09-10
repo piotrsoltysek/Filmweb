@@ -11,7 +11,11 @@ public interface IMovieService {
     boolean directorInDB(Director director);
     List<Movie> findMoviesByGenre(Movie.Genre genre);
     List<Movie> findMoviesByPattern(String pattern);
+    List<Movie> findMoviesByProductionYear(String productionYear);
     List<Movie> findMoviesByPatternAndGenre(String pattern, Movie.Genre genre);
+    List<Movie> findMoviesByProductionYearAndGenre(String productionYear, Movie.Genre genre);
+    List<Movie> findMoviesByPatternAndProductionYear(String pattern, String productionYear);
+    List<Movie> findMoviesByPatternAndProductionYearAndGenre(String pattern, String productionYear, Movie.Genre genre);
     List<Movie> findMoviesByFilter(UserFilter userFilter);
     List<Movie> findMoviesByUserId(int id);
     Movie findMovieById(int id);

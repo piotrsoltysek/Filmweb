@@ -45,9 +45,7 @@ public class MovieServiceImpl implements IMovieService {
 
         for (Director tempDirector : movieDAO.getAllDirectors()) {
             if (tempDirector.getName().equals(director.getName())) {
-                System.out.println("name the same");
                 if (tempDirector.getSurname().equals(director.getSurname())) {
-                    System.out.println("surname the same");
                     return true;
                 }
             }
@@ -77,12 +75,55 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
+    public List<Movie> findMoviesByProductionYear(String productionYear) {
+        return this.movieDAO.getMoviesByProductionYear(productionYear);
+    }
+
+    @Override
     public List<Movie> findMoviesByPatternAndGenre(String pattern, Movie.Genre genre) {
         Set<Movie> result = new HashSet<>();
 
         for (Movie movie : findMoviesByPattern(pattern)) {
             if (movie.getGenre().equals(genre)) {
                 result.add(movie);
+            }
+        }
+        return new ArrayList<>(result);
+    }
+
+    @Override
+    public List<Movie> findMoviesByPatternAndProductionYear(String pattern, String productionYear) {
+        Set<Movie> result = new HashSet<>();
+
+        for (Movie movie : findMoviesByPattern(pattern)) {
+            if (movie.getProductionYear().equals(productionYear)) {
+                result.add(movie);
+            }
+        }
+        return new ArrayList<>(result);
+    }
+
+    @Override
+    public List<Movie> findMoviesByProductionYearAndGenre(String productionYear, Movie.Genre genre) {
+        Set<Movie> result = new HashSet<>();
+
+        for (Movie movie : findMoviesByProductionYear(productionYear)) {
+            if (movie.getGenre().equals(genre)) {
+                result.add(movie);
+            }
+        }
+        return new ArrayList<>(result);
+    }
+
+    @Override
+    public List<Movie> findMoviesByPatternAndProductionYearAndGenre(String pattern, String productionYear, Movie.Genre genre) {
+        Set<Movie> result = new HashSet<>();
+
+        for (Movie movie : findMoviesByPattern(pattern)) {
+            if (movie.getProductionYear().equals(productionYear)) {
+                if (movie.getGenre().equals(genre)) {
+                    result.add(movie);
+                }
             }
         }
         return new ArrayList<>(result);
@@ -99,15 +140,37 @@ public class MovieServiceImpl implements IMovieService {
         if (pattern != null && genre == null && productionYear == null) {
             return findMoviesByPattern(pattern);
         }
-        //pattern & genre
-        if (pattern != null && genre != null && productionYear == null) {
-            return findMoviesByPatternAndGenre(pattern, genre);
 
+        //year
+        if (pattern == null && genre == null && productionYear != null) {
+            return findMoviesByProductionYear(productionYear);
         }
+
         //genre
         if (pattern == null && genre != null && productionYear == null) {
             return findMoviesByGenre(genre);
         }
+
+        //pattern & genre
+        if (pattern != null && genre != null && productionYear == null) {
+            return findMoviesByPatternAndGenre(pattern, genre);
+        }
+
+        //pattern & year
+        if (pattern != null && genre == null && productionYear != null) {
+            return findMoviesByPatternAndProductionYear(pattern, productionYear);
+        }
+
+        // year & genre
+        if (pattern == null && genre != null && productionYear != null) {
+            return findMoviesByProductionYearAndGenre(productionYear, genre);
+        }
+
+        //pattern & genre & year
+        if (pattern != null && genre != null && productionYear != null) {
+            return findMoviesByPatternAndProductionYearAndGenre(pattern, productionYear, genre);
+        }
+
         return new ArrayList<>();
     }
 

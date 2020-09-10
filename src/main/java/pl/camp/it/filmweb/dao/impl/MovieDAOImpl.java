@@ -109,6 +109,17 @@ public class MovieDAOImpl implements IMovieDAO {
     }
 
     @Override
+    public List<Movie> getMoviesByProductionYear(String productionYear) {
+        Session session = this.sessionFactory.openSession();
+        Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie WHERE productionYear LIKE :productionYear");
+        query.setParameter("productionYear", "%" + productionYear + "%");
+
+        List<Movie> result = query.getResultList();
+        session.close();
+        return result;
+    }
+
+    @Override
     public List<Movie> getMoviesByDirectorId(int id) {
         Session session = this.sessionFactory.openSession();
         Query<Movie> query = session.createQuery("FROM pl.camp.it.filmweb.model.Movie WHERE director_id = :director");

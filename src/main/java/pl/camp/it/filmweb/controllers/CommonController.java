@@ -57,9 +57,14 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
-    public String findMovies(Model model, @RequestParam String pattern) {
+    public String findMovies(Model model, @RequestParam String pattern, @RequestParam String productionYear) {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        sessionObject.getUserFilter().setLastFindPattern(pattern);
+        if (!pattern.equals("")) {
+            sessionObject.getUserFilter().setLastFindPattern(pattern);
+        }
+        if (!productionYear.equals("")) {
+            sessionObject.getUserFilter().setProductionYear(productionYear);
+        }
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
         this.ratingService.addRatingsToMovies(movies);
         this.sessionObject.getUserFilter().setLastFindPattern(pattern);

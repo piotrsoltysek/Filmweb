@@ -11,6 +11,7 @@ public interface IMovieDAO {
     Director getDirectorByNameAndSurname(String name, String surname);
     List<Movie> getMoviesByGenre(Movie.Genre genre);
     List<Movie> getMoviesByPattern(String pattern);
+    List<Movie> getMoviesByProductionYear(String productionYear);
     List<Director> getDirectorsByPattern(String pattern);
     List<Movie> getMoviesByDirectorId(int id);
     List<Movie> getMovieByFilter(String pattern, Movie.Genre genre, String productionYear);
