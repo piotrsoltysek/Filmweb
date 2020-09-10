@@ -19,11 +19,9 @@
         <div class="movie">
             <div class="title">
                 <div class="label">Tytuł</div>
-                <div class="value" th:text="${currentMovie.title}"></div>
+                <a th:href="@{/reviews/{id}(id=${currentMovie.id})}"><div class="value" th:text="${currentMovie.title}"></div></a>
                 <div class="value" th:text="${currentMovie.productionYear}"></div>
                 <div class="value" th:text="${currentMovie.getAverage()}"></div>
-
-                <a th:href="@{/reviews/{id}(id=${currentMovie.id})}">Zobacz recenzje</a>
             </div>
 
 
@@ -37,9 +35,9 @@
             </div>
 
             <th:block th:if="${isLogged}">
-                <a th:href="@{/addRating/{id}(id=${currentMovie.id})}">Dodaj ocenę</a>
-                <a th:href="@{/addReview/{id}(id=${currentMovie.id})}">Dodaj recenzję</a>
+                <a th:href="@{/addRating/{id}(id=${currentMovie.id})}"><img src="addRating.jpeg" alt="Dodaj ocenę"></a>
 
+                <a th:href="@{/addReview/{id}(id=${currentMovie.id})}"><img src="addReview.png" alt="Dodaj recenzję"></a>
             </th:block>
 
         </div>

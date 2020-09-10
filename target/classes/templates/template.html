@@ -13,9 +13,6 @@
 
 
 <div id="user-menu" th:fragment="userMenu">
-    <th:block th:if="${isLogged}">
-    <a href="/user" id="basket-button"></a>
-    </th:block>
 
     <th:block th:if="${!isLogged}">
         <a href="/login" id="login-button"></a>
@@ -23,6 +20,10 @@
 
     <th:block th:if="${isLogged}">
         <a href="/logout" id="logout-button"></a>
+    </th:block>
+
+    <th:block th:if="${isLogged}">
+        <a href="/user" id="basket-button"></a>
     </th:block>
 
     <th:block th:if="${isLogged}">
