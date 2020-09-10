@@ -25,13 +25,7 @@ public class GenreController {
     IMovieService movieService;
 
     @Autowired
-    IReviewService reviewService;
-
-    @Autowired
     IRatingService ratingService;
-
-    @Autowired
-    IRatingDAO ratingDAO;
 
 
     @RequestMapping(value = "/action", method = RequestMethod.GET)
@@ -39,6 +33,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.ACTION);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/action");
         return "main";
@@ -50,6 +45,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.COMEDY);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/comedy");
         return "main";
@@ -60,6 +56,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.DRAMA);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/drama");
         return "main";
@@ -70,6 +67,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.FANTASY);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/fantasy");
         return "main";
@@ -80,6 +78,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.HORROR);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/horror");
         return "main";
@@ -90,6 +89,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.ROMANCE);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/romance");
         return "main";
@@ -100,6 +100,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.THRILLER);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/thriller");
         return "main";
@@ -110,9 +111,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.WESTERN);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        for (Movie tempMovie : movies) {
-            tempMovie.setAverage(this.ratingService.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
-        }
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/western");
         return "main";
@@ -123,6 +122,7 @@ public class GenreController {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.OTHER);
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/other");
         return "main";

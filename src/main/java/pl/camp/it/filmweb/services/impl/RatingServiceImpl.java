@@ -3,6 +3,7 @@ package pl.camp.it.filmweb.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.camp.it.filmweb.dao.IRatingDAO;
+import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.model.Rating;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.services.IRatingService;
@@ -38,6 +39,17 @@ public class RatingServiceImpl implements IRatingService {
             sum += rating.getScore();
             numbers++;
         }
+        if (ratings.isEmpty()) {
+            return 0.0;
+        }
         return 1.0 * sum / numbers;
+    }
+
+    @Override
+    public List<Movie> addRatingsToMovies(List<Movie> movies) {
+        for (Movie tempMovie : movies) {
+            tempMovie.setAverage(this.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
+        }
+        return movies;
     }
 }

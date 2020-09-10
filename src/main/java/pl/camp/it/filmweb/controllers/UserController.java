@@ -20,6 +20,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
     @Autowired
     IUserService userService;
 
@@ -29,12 +30,8 @@ public class UserController {
     @Resource
     SessionObject sessionObject;
 
-
     @Autowired
     IRatingService ratingService;
-
-    @Autowired
-    IRatingDAO ratingDAO;
 
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -67,9 +64,7 @@ public class UserController {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
 
         List<Movie> movies = this.movieService.findMoviesByUserId(sessionObject.getUser().getId());
-        for (Movie tempMovie : movies) {
-            tempMovie.setAverage(this.ratingService.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
-        }
+        this.ratingService.addRatingsToMovies(movies);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/user");
         return "main";
