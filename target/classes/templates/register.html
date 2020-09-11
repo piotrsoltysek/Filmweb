@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Filmweb</title>
-    <link rel="stylesheet" type="text/css" href="register.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<div class="container">
 
-    <form id="register-form" method="POST" th:object="${user}">
+<div th:replace="template.html :: logo"></div>
+<div th:replace="template.html :: finderBar"></div>
+<div th:replace="template.html :: menu"></div>
+
+
+
+    <form id="login-form" method="POST" th:object="${user}">
         <input type="text" placeholder="login" th:field="*{login}"><br>
         <input type="password" placeholder="hasło" th:field="*{password}"><br>
         <input type="password" placeholder="powtórz hasło" name="password2"><br>
-        <input type="submit" value="OK">
+        <input type="submit" value="Zarejestruj">
     </form>
-</div>
+
 </body>
 </html>
