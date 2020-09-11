@@ -9,6 +9,6 @@ import java.util.List;
 public interface IRatingService {
     void addRating(Rating rating, int movieId);
     double getMovieAverageRating(List<Rating> ratings);
-    List<Movie> addRatingsToMovies(List<Movie> movies);
+    List<Movie> setAverageToMovies(List<Movie> movies);
     boolean alreadyRated(User user, Movie movie);
 }

@@ -1,8 +1,7 @@
 package pl.camp.it.filmweb.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity(name = "tmovie")
 public class Movie {
@@ -102,6 +101,8 @@ public class Movie {
         }
         return false;
     }
+
+
 
     @Override
     public int hashCode() {

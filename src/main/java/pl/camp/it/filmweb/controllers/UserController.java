@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.camp.it.filmweb.dao.IRatingDAO;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IMovieService;
@@ -15,6 +14,7 @@ import pl.camp.it.filmweb.services.IRatingService;
 import pl.camp.it.filmweb.services.IUserService;
 import pl.camp.it.filmweb.session.SessionObject;
 import javax.annotation.Resource;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -64,7 +64,8 @@ public class UserController {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
 
         List<Movie> movies = this.movieService.findMoviesByUserId(sessionObject.getUser().getId());
-        this.ratingService.addRatingsToMovies(movies);
+        this.ratingService.setAverageToMovies(movies);
+        movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/user");
         return "main";

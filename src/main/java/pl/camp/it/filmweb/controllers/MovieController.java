@@ -16,6 +16,7 @@ import pl.camp.it.filmweb.services.IRatingService;
 import pl.camp.it.filmweb.services.IReviewService;
 import pl.camp.it.filmweb.session.SessionObject;
 import javax.annotation.Resource;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -91,6 +92,18 @@ public class MovieController {
         return "reviews";
     }
 
+
+    @RequestMapping(value = "/ranking", method = RequestMethod.GET)
+    public String main(Model model) {
+        model.addAttribute("isLogged", (sessionObject.getUser() != null));
+
+        List<Movie> movies = this.movieService.getAllMovies();
+        this.ratingService.setAverageToMovies(movies);
+        movies.sort(Comparator.comparingDouble(Movie::getAverage).reversed());
+        model.addAttribute("movies", movies);
+        this.sessionObject.setLastAddress("/main");
+        return "main";
+    }
 }
 
 

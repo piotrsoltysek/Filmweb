@@ -9,8 +9,8 @@ import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.services.IReviewService;
 import pl.camp.it.filmweb.session.SessionObject;
-
 import java.util.List;
+
 
 @Service
 public class ReviewServiceImpl implements IReviewService {

@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.camp.it.filmweb.dao.IRatingDAO;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.services.IRatingService;
 import pl.camp.it.filmweb.session.SessionObject;
 import javax.annotation.Resource;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -35,7 +35,8 @@ public class CommonController {
         sessionObject.getUserFilter().reset();
 
         List<Movie> movies = this.movieService.getAllMovies();
-        this.ratingService.addRatingsToMovies(movies);
+        this.ratingService.setAverageToMovies(movies);
+        movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/main");
         return "main";
@@ -50,7 +51,8 @@ public class CommonController {
     public String findMovies(Model model) {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.addRatingsToMovies(movies);
+        this.ratingService.setAverageToMovies(movies);
+        movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/find");
         return "main";
@@ -66,7 +68,8 @@ public class CommonController {
             sessionObject.getUserFilter().setProductionYear(productionYear);
         }
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.addRatingsToMovies(movies);
+        this.ratingService.setAverageToMovies(movies);
+        movies.sort(Comparator.comparing(Movie::getTitle));
         this.sessionObject.getUserFilter().setLastFindPattern(pattern);
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/find");

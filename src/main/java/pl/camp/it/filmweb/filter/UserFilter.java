@@ -2,6 +2,7 @@ package pl.camp.it.filmweb.filter;
 
 import pl.camp.it.filmweb.model.Movie;
 
+
 public class UserFilter {
     private String lastFindPattern;
     private Movie.Genre genre;

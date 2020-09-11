@@ -7,10 +7,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.camp.it.filmweb.dao.IReviewDAO;
-import pl.camp.it.filmweb.model.Movie;
-import pl.camp.it.filmweb.model.Rating;
 import pl.camp.it.filmweb.model.Review;
 import java.util.List;
+
 
 @Repository
 public class ReviewDAOImpl implements IReviewDAO {

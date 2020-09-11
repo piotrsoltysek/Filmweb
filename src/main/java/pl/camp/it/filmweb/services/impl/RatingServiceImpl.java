@@ -9,8 +9,8 @@ import pl.camp.it.filmweb.model.User;
 import pl.camp.it.filmweb.services.IMovieService;
 import pl.camp.it.filmweb.services.IRatingService;
 import pl.camp.it.filmweb.session.SessionObject;
-
 import java.util.List;
+
 
 @Service
 public class RatingServiceImpl implements IRatingService {
@@ -49,7 +49,7 @@ public class RatingServiceImpl implements IRatingService {
     }
 
     @Override
-    public List<Movie> addRatingsToMovies(List<Movie> movies) {
+    public List<Movie> setAverageToMovies(List<Movie> movies) {
         for (Movie tempMovie : movies) {
             tempMovie.setAverage(this.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
         }

@@ -1,8 +1,6 @@
 package pl.camp.it.filmweb.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity(name = "tuser")
