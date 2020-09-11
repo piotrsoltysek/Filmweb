@@ -3,19 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Filmweb</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
-<div th:replace="template.html :: logo"></div>
-<div th:replace="template.html :: userMenu"></div>
-<div th:replace="template.html :: finderBar"></div>
-<div th:replace="template.html :: menu"></div>
-
-
-
-    <form id="login-form" method="POST" th:object="${rating}" >
+    <form id="rating-form" method="POST" th:object="${rating}" >
         <label for="score">Ocena</label>
         <select name="score" id="score" th:field="*{score}">
             <option value="1">1</option>
@@ -34,6 +25,21 @@
         <input type="submit" value="OK">
     </form>
 
+<style>
+    #rating-form {
+    position: absolute;
+    top: 165px;
+    margin: 400 auto;
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+}
+
+#rating-form input {
+    margin: 10px 0;
+    text-align: center;
+}
+</style>
 </body>
 </html>
 

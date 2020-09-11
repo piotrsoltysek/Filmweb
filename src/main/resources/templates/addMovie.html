@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Filmweb</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
@@ -15,7 +14,7 @@
 
 
 
-    <form id="login-form" method="POST" th:object="${movie}" >
+    <form id="form" method="POST" th:object="${movie}" >
         <input type="text" placeholder="tytuł" name="title" th:field="*{title}"><br>
         <input type="text" placeholder="rok produkcji" name="productionYear" th:field="*{productionYear}"><br>
         <div th:object="${director}">

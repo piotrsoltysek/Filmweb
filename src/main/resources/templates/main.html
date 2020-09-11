@@ -5,44 +5,41 @@
     <title>Filmweb</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
+
 <body>
 
-<div th:replace="template.html :: logo"></div>
-<div th:replace="template.html :: userMenu"></div>
-<div th:replace="template.html :: finderBar"></div>
-<div th:replace="template.html :: menu"></div>
+    <div th:replace="template.html :: logo"></div>
+    <div th:replace="template.html :: userMenu"></div>
+    <div th:replace="template.html :: finderBar"></div>
+    <div th:replace="template.html :: menu"></div>
+    <br>
+    <div id="content">
+        <th:block th:each="currentMovie : ${movies}">
+            <div class="movie">
+                <div class="title">
+                    <a th:href="@{/reviews/{id}(id=${currentMovie.id})}">
+                        <div class="value" style="width: 250px;"  th:text="${currentMovie.title}"></div>
+                    </a>
+                    <br>
+                    <div class="value">Rok produkcji:</div>
 
-<br>
+                    <div class="value" th:text="${currentMovie.productionYear}"></div>
+                    <div class="value">Średnia ocena:</div>
 
-<div id="content">
-    <th:block th:each="currentMovie : ${movies}">
-        <div class="movie">
-            <div class="title">
-                <div class="label">Tytuł</div>
-                <a th:href="@{/reviews/{id}(id=${currentMovie.id})}"><div class="value" th:text="${currentMovie.title}"></div></a>
-                <div class="value" th:text="${currentMovie.productionYear}"></div>
-                <div class="value" th:text="${currentMovie.getAverage()}"></div>
-            </div>
+                    <div class="value" th:text="${currentMovie.getAverage()}"></div>
+                        <div class="value">Reżyser:</div>
+                        <div class="director-name" th:text="${currentMovie.director.name}"></div>
+                        <div class="director-name" th:text="${currentMovie.director.surname}"></div>
 
-
-            <div class="director">
-                <div class="label">Reżyser:</div>
-                <div class="value">
-                    <div class="director-name" th:text="${currentMovie.director.name}"></div>
-                    <div class="director-surname" th:text="${currentMovie.director.surname}"></div>
                 </div>
+                <th:block th:if="${isLogged}">
+                    <a th:href="@{/addRating/{id}(id=${currentMovie.id})}"><img src="addRating.jpeg" alt="Dodaj ocenę"></a>
+
+                    <a th:href="@{/addReview/{id}(id=${currentMovie.id})}"><img src="addReview.png" alt="Dodaj recenzję"></a>
+                </th:block>
 
             </div>
-
-            <th:block th:if="${isLogged}">
-                <a th:href="@{/addRating/{id}(id=${currentMovie.id})}"><img src="addRating.jpeg" alt="Dodaj ocenę"></a>
-
-                <a th:href="@{/addReview/{id}(id=${currentMovie.id})}"><img src="addReview.png" alt="Dodaj recenzję"></a>
-            </th:block>
-
-        </div>
-    </th:block>
-</div>
-
+        </th:block>
+    </div>
 </body>
 </html>

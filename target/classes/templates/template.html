@@ -7,10 +7,7 @@
 <body>
 
 <a href="/main" id="logo" th:fragment="logo">
-
 </a>
-
-
 
 <div id="user-menu" th:fragment="userMenu">
 
@@ -23,7 +20,7 @@
     </th:block>
 
     <th:block th:if="${isLogged}">
-        <a href="/user" id="basket-button"></a>
+        <a href="/user" id="myMovies-button"></a>
     </th:block>
 
     <th:block th:if="${isLogged}">
@@ -33,17 +30,13 @@
 
 
 
-
 <div id="finder" th:fragment="finderBar">
     <form method="POST" action="/find">
         <input type="text" placeholder="Tytuł / Reżyser" name="pattern">
         <input type="text" placeholder="Rok produkcji" name="productionYear">
         <input type="submit" value="Szukaj">
     </form>
-
 </div>
-
-
 
 
 
@@ -59,8 +52,5 @@
     <a href="/other">Inny</a>
     <a href="/ranking">RANKING FILMÓW</a>
 </div>
-
-
-
 </body>
 </html>

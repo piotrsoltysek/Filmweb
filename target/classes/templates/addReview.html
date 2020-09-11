@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Filmweb</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
-<div th:replace="template.html :: logo"></div>
-<div th:replace="template.html :: userMenu"></div>
-<div th:replace="template.html :: finderBar"></div>
-<div th:replace="template.html :: menu"></div>
 
-
-    <form id="login-form" method="POST" th:object="${review}" >
-        <input type="text" placeholder="recenzja" name="content" th:field="*{content}"><br>
+    <form id="review-form" method="POST" th:object="${review}">
+        <input type="text" placeholder="recenzja" name="content" style="
+    width: 600px;
+    height: 200px;
+" th:field="*{content}"><br>
 
         <input type="submit" value="OK">
     </form>
+<style>
+    #review-form {
+    position: absolute;
+    top: 185px;
+    margin: 400 auto;
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+}
 
+#review-form input {
+    margin: 10px 0;
+    text-align: center;
+}
+</style>
 </body>
 </html>
 

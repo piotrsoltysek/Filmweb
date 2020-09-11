@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 20%;
     height: 80px;
     background-size: contain;
     background-image: url("logo.png");
@@ -10,16 +10,29 @@
     margin: 5px;
 }
 
+#form {
+    position: absolute;
+    top: 185px;
+    margin: 400 auto;
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+}
+
+#form input {
+    margin: 10px 0;
+    text-align: center;
+}
 
 #user-menu {
     position: absolute;
-    top: 0;
+    top: 5px;
     right: 20px;
-    width: 40%;
+    width: 30%;
     height: 50px;
 }
 
-#basket-button {
+#myMovies-button {
     display: inline-block;
     height: 90px;
     width: 110px;
@@ -63,11 +76,9 @@
     margin: 10px;
 }
 
-
-
 #finder {
     position: absolute;
-    top: 55px;
+    top: 65px;
     left: 0;
     width: 100%;
     height: 50px;
@@ -85,11 +96,10 @@
 
 #menu {
     position: absolute;
-    top: 110px;
+    top: 125px;
     left: 5%;
     width: 90%;
     height: 50px;
-
     text-align: center;
     border-top: solid 1px black;
 }
@@ -108,15 +118,14 @@
 }
 
 #menu a:hover {
-    background: blue;
-    color: white;
+    background: #ffcc00;
 }
 
 #content {
     position: absolute;
-    top: 165px;
-    left: 5%;
-    width: 90%;
+    top: 220px;
+    left: 15%;
+    width: 70%;
 }
 
 .movie {
@@ -129,21 +138,37 @@
     width: 100%
 }
 
-.label {
+.title {
     display: inline-block;
-    width: 30%
+    width: 20%
+        margin: 8px;
+
+}
+
+.title a {
+    display: inline-block;
+    font-size: 20px;
+    width: 20%
 }
 
 .value {
     display: inline-block;
-    width: 69%;
+    width: 13%;
+    margin: 8px;
+
+}
+.director {
+    width: 10%;
+    display: inline-block;
+
 }
 
 .director-name {
     display: inline-block;
+
 }
 
 .director-surname {
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 10px;
 }
