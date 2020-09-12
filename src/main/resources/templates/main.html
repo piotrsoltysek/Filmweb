@@ -5,7 +5,6 @@
     <title>Filmweb</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-
 <body>
 
     <div th:replace="template.html :: logo"></div>
@@ -13,6 +12,7 @@
     <div th:replace="template.html :: finderBar"></div>
     <div th:replace="template.html :: menu"></div>
     <br>
+
     <div id="content">
         <th:block th:each="currentMovie : ${movies}">
             <div class="movie">

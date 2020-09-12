@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Filmweb</title>
+    <link rel="stylesheet" type="text/css" href="/main.css">
 </head>
 <body>
 
-<a href="/main" id="logo"><img src="resources/static/logo.png" alt="LOGO">
-</a>
-
+<div th:replace="template.html :: logo"></div>
+<div th:replace="template.html :: userMenu"></div>
+<div th:replace="template.html :: finderBar"></div>
+<div th:replace="template.html :: menu"></div>
 
 <div id="content">
     <th:block th:each="currentReview : ${reviews}">
         <div class="movie">
-            <div class="title" th:text="${currentReview.content}"></div>
+            <div class="reviews-title" th:text="${currentReview.content}"></div>
                 <div class="value" >
             </div>
 
-
         <div class="director">
-            <div class="label">Recenzja użytkownika:</div>
+            <div class="reviews-label">Recenzja użytkownika:</div>
             <div class="value">
                 <div class="director-name" th:text="${currentReview.getUser().getLogin()}"></div>
             </div>
@@ -28,43 +29,5 @@
         </div>
     </th:block>
 </div>
-
-
-<style>
-#content {
-    position: absolute;
-    top: 220px;
-    left: 25%;
-    width: 50%;
-}
-
-
-.movie {
-    border: solid 1px black;
-    margin: 8px;
-    padding: 8px;
-}
-
-.movie > div {
-    width: 100%
-}
-
-.title {
-    display: inline-block;
-    font-size: 25px;
-    width: 30%
-}
-
-.value {
-    display: inline-block;
-    width: 69%;
-}
-.director-name {
-    display: inline-block;
-}
-
-
-</style>
-
 </body>
 </html>

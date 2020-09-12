@@ -35,8 +35,8 @@ public class RatingServiceImpl implements IRatingService {
 
     @Override
     public double getMovieAverageRating(List<Rating> ratings) {
-        int sum = 0;
-        int numbers = 0;
+        double sum = 0.0;
+        double numbers = 0.0;
 
         for (Rating rating : ratings) {
             sum += rating.getScore();
@@ -45,7 +45,10 @@ public class RatingServiceImpl implements IRatingService {
         if (ratings.isEmpty()) {
             return 0.0;
         }
-        return 1.0 * sum / numbers;
+        double average =  sum / numbers * 100;
+        int averageInt = (int) average;
+        double newAverage = 1.0 * averageInt / 100;
+        return newAverage;
     }
 
     @Override

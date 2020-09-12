@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Filmweb</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="/main.css">
 </head>
 <body>
 
@@ -12,13 +12,11 @@
 <div th:replace="template.html :: menu"></div>
 
 
-
     <form id="form" method="POST" th:object="${user}">
         <input type="text" placeholder="login" th:field="*{login}"><br>
         <input type="password" placeholder="hasło" th:field="*{password}"><br>
         <input type="password" placeholder="powtórz hasło" name="password2"><br>
         <input type="submit" value="Zarejestruj">
     </form>
-
 </body>
 </html>
