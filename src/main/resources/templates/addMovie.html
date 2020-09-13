@@ -16,7 +16,9 @@
 
     <form id="form" method="POST" th:object="${movie}" >
         <input type="text" placeholder="tytuł" name="title" th:field="*{title}"><br>
-        <input type="text" placeholder="rok produkcji" name="productionYear" th:field="*{productionYear}"><br>
+        <input type="number" min="1900" max="2050" step="1" placeholder="rok produkcji" name="productionYear" style="
+    width: 169px;
+"th:field="*{productionYear}"><br>
         <div th:object="${director}">
             <input type="text" placeholder="imię reżysera" name="name" th:field="*{name}"><br>
             <input type="text" placeholder="nazwisko reżysera" name="surname" th:field="*{surname}"><br>
