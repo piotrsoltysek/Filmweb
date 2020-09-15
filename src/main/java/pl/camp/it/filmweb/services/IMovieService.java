@@ -8,6 +8,7 @@ import java.util.List;
 public interface IMovieService {
     List<Movie> getAllMovies();
     void addMovie(Movie movie, Director director);
+    void updateMovieTitle(Movie movie);
     boolean directorInDB(Director director);
     List<Movie> findMoviesByGenre(Movie.Genre genre);
     List<Movie> findMoviesByPattern(String pattern);

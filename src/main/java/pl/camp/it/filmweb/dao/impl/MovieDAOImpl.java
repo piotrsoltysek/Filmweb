@@ -48,6 +48,23 @@ public class MovieDAOImpl implements IMovieDAO {
     }
 
     @Override
+    public void updateMovie(Movie movie) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(movie);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
     public List<Director> getAllDirectors() {
         Session session = this.sessionFactory.openSession();
         Query<Director> query = session.createQuery("FROM pl.camp.it.filmweb.model.Director");

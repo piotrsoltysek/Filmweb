@@ -8,6 +8,7 @@ public interface IMovieDAO {
     List<Movie> getAllMovies();
     List<Director> getAllDirectors();
     void addMovie(Movie movie);
+    void updateMovie(Movie movie);
     Director getDirectorByNameAndSurname(String name, String surname);
     List<Movie> getMoviesByGenre(Movie.Genre genre);
     List<Movie> getMoviesByPattern(String pattern);

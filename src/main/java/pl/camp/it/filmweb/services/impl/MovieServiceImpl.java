@@ -41,6 +41,11 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
+    public void updateMovieTitle(Movie movie) {
+        this.movieDAO.updateMovie(movie);
+    }
+
+    @Override
     public boolean directorInDB(Director director) {
 
         for (Director tempDirector : movieDAO.getAllDirectors()) {
