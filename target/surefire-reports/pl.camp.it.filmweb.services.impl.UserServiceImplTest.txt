@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: pl.camp.it.filmweb.services.impl.UserServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.87 s - in pl.camp.it.filmweb.services.impl.UserServiceImplTest

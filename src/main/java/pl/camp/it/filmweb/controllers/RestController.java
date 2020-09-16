@@ -10,7 +10,7 @@ import pl.camp.it.filmweb.services.IMovieService;
 import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/rest")
 public class RestController {
 
     @Autowired

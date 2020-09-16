@@ -1,0 +1,5 @@
+pl\camp\it\filmweb\AppConfigurationTest.class
+pl\camp\it\filmweb\services\impl\ReviewServiceImplTest.class
+pl\camp\it\filmweb\services\impl\MovieServiceImplTest.class
+pl\camp\it\filmweb\services\impl\RatingServiesImplTest.class
+pl\camp\it\filmweb\services\impl\UserServiceImplTest.class
