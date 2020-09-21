@@ -32,7 +32,7 @@ public class MovieDAOImpl implements IMovieDAO {
 
     @Override
     public void addMovie(Movie movie) {
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -49,7 +49,7 @@ public class MovieDAOImpl implements IMovieDAO {
 
     @Override
     public void updateMovie(Movie movie) {
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -77,7 +77,7 @@ public class MovieDAOImpl implements IMovieDAO {
     @Override
     public Director getDirectorByNameAndSurname(String name, String surname) {
         try {
-            Session session = sessionFactory.openSession();
+            Session session = this.sessionFactory.openSession();
             Query<Director> query = session.createQuery("FROM pl.camp.it.filmweb.model.Director WHERE name = :name and surname = :surname");
             query.setParameter("name", name);
             query.setParameter("surname", surname);
@@ -154,19 +154,19 @@ public class MovieDAOImpl implements IMovieDAO {
         if (pattern != null) {
             query.setParameter("title", "%" + pattern + "%");
         } else {
-            query.setParameter("title", "*");
+            query.setParameter("title", "%");
         }
 
         if (genre != null) {
             query.setParameter("genre", genre);
         } else {
-            query.setParameter("genre", "*");
+            query.setParameter("genre", "%");
         }
 
         if (productionYear != null) {
             query.setParameter("productionYear", productionYear);
         } else {
-            query.setParameter("productionYear", "*");
+            query.setParameter("productionYear", "%");
         }
 
         List<Movie> result = query.getResultList();

@@ -61,10 +61,9 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String myMovies(Model model) {
 
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
 
-        List<Movie> movies = this.movieService.findMoviesByUserId(sessionObject.getUser().getId());
-        this.ratingService.setAverageToMovies(movies);
+        List<Movie> movies = this.movieService.findMoviesByUserId(this.sessionObject.getUser().getId());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/user");

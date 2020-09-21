@@ -21,7 +21,7 @@ public class UserDAOImpl implements IUserDAO {
     @Override
     public User getUserByLogin(String login) {
         try {
-            Session session = sessionFactory.openSession();
+            Session session = this.sessionFactory.openSession();
             Query<User> query = session.createQuery("FROM pl.camp.it.filmweb.model.User WHERE login = :login");
             query.setParameter("login", login);
 
@@ -35,7 +35,7 @@ public class UserDAOImpl implements IUserDAO {
 
     @Override
     public void addUser(User user) {
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -53,7 +53,7 @@ public class UserDAOImpl implements IUserDAO {
     @Override
     public User getUserById(int id) {
         try {
-            Session session = sessionFactory.openSession();
+            Session session = this.sessionFactory.openSession();
             Query<User> query = session.createQuery("FROM pl.camp.it.filmweb.model.User WHERE id = :id");
             query.setParameter("id", id);
 

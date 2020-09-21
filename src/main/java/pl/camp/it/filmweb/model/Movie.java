@@ -18,7 +18,7 @@ public class Movie {
     private Genre genre;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
-    private double average;
+    private double average = 0.0;
 
     public double getAverage() {
         return average;
@@ -78,9 +78,6 @@ public class Movie {
     }
 
 
-
-
-
     @Override
     public String toString() {
         return "Movie{" +
@@ -90,6 +87,7 @@ public class Movie {
                 ", director=" + director +
                 ", genre=" + genre +
                 ", user=" + user +
+                ", average=" + average +
                 '}';
     }
 

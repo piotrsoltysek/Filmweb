@@ -20,7 +20,7 @@ public class RatingDAOImpl implements IRatingDAO {
 
     @Override
     public void addRating(Rating rating) {
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -49,7 +49,6 @@ public class RatingDAOImpl implements IRatingDAO {
     @Override
     public List<Rating> getUserRate(int userId, int movieId) {
         Session session = this.sessionFactory.openSession();
-        System.out.println("query");
         Query<Rating> query = session.createQuery("FROM pl.camp.it.filmweb.model.Rating WHERE user_id = :userId AND movie_id = :movieId");
         query.setParameter("userId", userId);
         query.setParameter("movieId", movieId);

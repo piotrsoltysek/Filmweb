@@ -2,6 +2,7 @@ package pl.camp.it.filmweb.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.camp.it.filmweb.dao.IMovieDAO;
 import pl.camp.it.filmweb.dao.IRatingDAO;
 import pl.camp.it.filmweb.model.Movie;
 import pl.camp.it.filmweb.model.Rating;
@@ -24,12 +25,19 @@ public class RatingServiceImpl implements IRatingService {
     @Autowired
     IRatingDAO ratingDAO;
 
+    @Autowired
+    IMovieDAO movieDAO;
+
     @Override
     public void addRating(Rating rating, int movieId) {
-        if (!alreadyRated(this.sessionObject.getUser(), this.movieService.findMovieById(movieId))) {
-            rating.setMovie(this.movieService.findMovieById(movieId));
+        Movie movie = this.movieService.findMovieById(movieId);
+        if (!alreadyRated(this.sessionObject.getUser(), movie)) {
+            rating.setMovie(movie);
             rating.setUser(this.sessionObject.getUser());
             this.ratingDAO.addRating(rating);
+            List<Rating> ratings = this.ratingDAO.getRatingByMovieId(movieId);
+            movie.setAverage(this.getMovieAverageRating(ratings));
+            this.movieDAO.updateMovie(movie);
         }
     }
 
@@ -49,14 +57,6 @@ public class RatingServiceImpl implements IRatingService {
         int averageInt = (int) average;
         double newAverage = 1.0 * averageInt / 100;
         return newAverage;
-    }
-
-    @Override
-    public List<Movie> setAverageToMovies(List<Movie> movies) {
-        for (Movie tempMovie : movies) {
-            tempMovie.setAverage(this.getMovieAverageRating(this.ratingDAO.getRatingByMovieId(tempMovie.getId())));
-        }
-        return movies;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean authenticate(User user) {
-        User userFromDataBase = userDAO.getUserByLogin(user.getLogin());
+        User userFromDataBase = this.userDAO.getUserByLogin(user.getLogin());
 
         if (userFromDataBase == null) {
             return false;
@@ -30,10 +30,6 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
-    @Override
-    public void addUser(User user) {
-        this.userDAO.addUser(user);
-    }
 
     @Override
     public boolean registerUser(User user, String repeatedPassword) {
@@ -51,7 +47,7 @@ public class UserServiceImpl implements IUserService {
         return this.userDAO.getUserById(id);
     }
 
-    public User getUserLogin(String login) {
+    public User getUserByLogin(String login) {
         return this.userDAO.getUserByLogin(login);
     }
 

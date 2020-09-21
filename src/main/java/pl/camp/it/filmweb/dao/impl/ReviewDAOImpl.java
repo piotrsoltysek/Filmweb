@@ -19,7 +19,7 @@ public class ReviewDAOImpl implements IReviewDAO {
 
     @Override
     public void addReview(Review review) {
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -69,7 +69,6 @@ public class ReviewDAOImpl implements IReviewDAO {
     @Override
     public List<Review> getUserReview(int userId, int movieId) {
             Session session = this.sessionFactory.openSession();
-            System.out.println("query");
             Query<Review> query = session.createQuery("FROM pl.camp.it.filmweb.model.Review WHERE user_id = :userId AND movie_id = :movieId");
             query.setParameter("userId", userId);
             query.setParameter("movieId", movieId);

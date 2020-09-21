@@ -31,11 +31,10 @@ public class CommonController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(Model model) {
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        sessionObject.getUserFilter().reset();
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        this.sessionObject.getUserFilter().reset();
 
         List<Movie> movies = this.movieService.getAllMovies();
-        this.ratingService.setAverageToMovies(movies);
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/main");
@@ -49,9 +48,8 @@ public class CommonController {
 
     @RequestMapping(value = "/find", method = RequestMethod.GET)
     public String findMovies(Model model) {
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
         List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/find");
@@ -62,13 +60,12 @@ public class CommonController {
     public String findMovies(Model model, @RequestParam String pattern, @RequestParam String productionYear) {
         model.addAttribute("isLogged", (sessionObject.getUser() != null));
         if (!pattern.equals("")) {
-            sessionObject.getUserFilter().setLastFindPattern(pattern);
+            this.sessionObject.getUserFilter().setLastFindPattern(pattern);
         }
         if (!productionYear.equals("")) {
-            sessionObject.getUserFilter().setProductionYear(productionYear);
+            this.sessionObject.getUserFilter().setProductionYear(productionYear);
         }
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         this.sessionObject.getUserFilter().setLastFindPattern(pattern);
         model.addAttribute("movies", movies);

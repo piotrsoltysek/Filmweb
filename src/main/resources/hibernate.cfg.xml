@@ -38,7 +38,6 @@
         <mapping class="pl.camp.it.filmweb.model.Rating"/>
         <mapping class="pl.camp.it.filmweb.model.Review"/>
 
-
     </session-factory>
 
 </hibernate-configuration>

@@ -30,9 +30,8 @@ public class GenreController {
     @RequestMapping(value = "/action", method = RequestMethod.GET)
     public String actionFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.ACTION);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/action");
@@ -43,9 +42,8 @@ public class GenreController {
     @RequestMapping(value = "/comedy", method = RequestMethod.GET)
     public String comedyFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.COMEDY);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/comedy");
@@ -55,9 +53,8 @@ public class GenreController {
     @RequestMapping(value = "/drama", method = RequestMethod.GET)
     public String dramaFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.DRAMA);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/drama");
@@ -67,9 +64,8 @@ public class GenreController {
     @RequestMapping(value = "/fantasy", method = RequestMethod.GET)
     public String fantasyFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.FANTASY);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/fantasy");
@@ -79,9 +75,8 @@ public class GenreController {
     @RequestMapping(value = "/horror", method = RequestMethod.GET)
     public String horrorFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.HORROR);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/horror");
@@ -91,9 +86,8 @@ public class GenreController {
     @RequestMapping(value = "/romance", method = RequestMethod.GET)
     public String romanceFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.ROMANCE);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/romance");
@@ -103,9 +97,8 @@ public class GenreController {
     @RequestMapping(value = "/thriller", method = RequestMethod.GET)
     public String thrillerFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.THRILLER);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/thriller");
@@ -115,9 +108,8 @@ public class GenreController {
     @RequestMapping(value = "/western", method = RequestMethod.GET)
     public String westernFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.WESTERN);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/western");
@@ -127,9 +119,8 @@ public class GenreController {
     @RequestMapping(value = "/other", method = RequestMethod.GET)
     public String otherFilms(Model model) {
         this.sessionObject.getUserFilter().setGenre(Movie.Genre.OTHER);
-        model.addAttribute("isLogged", (sessionObject.getUser() != null));
-        List<Movie> movies = this.movieService.findMoviesByFilter(sessionObject.getUserFilter());
-        this.ratingService.setAverageToMovies(movies);
+        model.addAttribute("isLogged", (this.sessionObject.getUser() != null));
+        List<Movie> movies = this.movieService.findMoviesByFilter(this.sessionObject.getUserFilter());
         movies.sort(Comparator.comparing(Movie::getTitle));
         model.addAttribute("movies", movies);
         this.sessionObject.setLastAddress("/other");

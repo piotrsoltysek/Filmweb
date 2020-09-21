@@ -32,11 +32,11 @@ public class MovieServiceImpl implements IMovieService {
     @Override
     public void addMovie(Movie movie, Director director) {
         if (directorInDB(director)) {
-            movie.setDirector(movieDAO.getDirectorByNameAndSurname(director.getName(), director.getSurname()));
+            movie.setDirector(this.movieDAO.getDirectorByNameAndSurname(director.getName(), director.getSurname()));
         } else {
             movie.setDirector(director);
         }
-        movie.setUser(sessionObject.getUser());
+        movie.setUser(this.sessionObject.getUser());
         this.movieDAO.addMovie(movie);
     }
 
@@ -48,7 +48,7 @@ public class MovieServiceImpl implements IMovieService {
     @Override
     public boolean directorInDB(Director director) {
 
-        for (Director tempDirector : movieDAO.getAllDirectors()) {
+        for (Director tempDirector : this.movieDAO.getAllDirectors()) {
             if (tempDirector.getName().equals(director.getName())) {
                 if (tempDirector.getSurname().equals(director.getSurname())) {
                     return true;

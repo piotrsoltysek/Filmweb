@@ -26,7 +26,7 @@ public class AuthenticationController {
     public String loginForm(Model model) {
         model.addAttribute("user", new User());
 
-        if (sessionObject.getUser() == null) {
+        if (this.sessionObject.getUser() == null) {
             model.addAttribute("isLogged", false);
             return "login";
         } else {
@@ -36,10 +36,10 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute User user) {
-        boolean authenticationResult = userService.authenticate(user);
+        boolean authenticationResult = this.userService.authenticate(user);
 
         if (authenticationResult) {
-            sessionObject.setUser(userService.getUserLogin(user.getLogin()));
+            this.sessionObject.setUser(this.userService.getUserByLogin(user.getLogin()));
 
             return "redirect:/main";
         } else {
